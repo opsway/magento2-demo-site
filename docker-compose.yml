@@ -1,0 +1,32 @@
+database:
+  image: mariadb:10
+  environment:
+    - MYSQL_DATABASE=magetips
+    - MYSQL_USER=magetips
+    - MYSQL_PASSWORD=magetips
+    - MYSQL_ROOT_PASSWORD=password
+
+phpfpm:
+  image: opsway/magento-php:7.0-fpm
+#   command: "php /src/bin/magento setup:install --base-url=\"{{base_url}}\" \
+# --db-host=mariadb --db-name=magetips --db-user=magetips --db-password=magetips \
+# --admin-firstname=Support --admin-lastname=Admin --admin-email=nikus@opsway.com \
+# --admin-user=supportadmin --admin-password=admin123 --language=ru_RU \
+# --currency=USD --timezone=America/Chicago --use-rewrites=1"
+  links:
+    - database
+  volumes:
+    - .:/src
+
+nginx:
+  image: mageinferno/magento2-nginx:latest
+  links:
+      - phpfpm
+  volumes_from:
+    - phpfpm
+  volumes:
+      - ./conf.d:/etc/nginx/conf.d
+  environment:
+    - PHP_HOST=phpfpm
+  ports:
+      - "80:80"
