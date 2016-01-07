@@ -34,6 +34,7 @@
     "require": {
         "magento/product-community-edition": "2.0.0",
         "magestore/bannerslider": "dev-master",
+        "opsway/module-facebookpopup": "dev-master",
         "composer/composer": "@alpha",
         "magento/data-migration-tool": "dev-master"
     },
