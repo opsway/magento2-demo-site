@@ -9,15 +9,33 @@
         "site",
         "magetips"
     ],
-    "repositories": [
-        {
+    "repositories": {
+        "0": {
             "type": "composer",
             "url": "https://repo.magento.com/"
+        },
+        "data-migration-tool": {
+            "type": "git",
+            "url": "https://github.com/magento/data-migration-tool-ce"
+        },
+        "magestore/bannerslider" : {
+            "type": "package",
+            "package": {
+                "name": "magestore/bannerslider",
+                "version": "dev-master",
+                "source": {
+                    "url": "git://github.com/Magestore/Bannerslider-Magento2.git",
+                    "type": "git",
+                    "reference": "master"
+                }
+            }
         }
-    ],
+    },
     "require": {
         "magento/product-community-edition": "2.0.0",
-        "composer/composer": "@alpha"
+        "magestore/bannerslider": "dev-master",
+        "composer/composer": "@alpha",
+        "magento/data-migration-tool": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "4.1.0",
